@@ -32,23 +32,27 @@ for i in each_track:
             final_tracks.append(link)
 
 albumaty_driver.close()
+lengh_of_the_list = len(final_tracks)
+
 time.sleep(2)
 
 start_time = time.time()
 
 for i in final_tracks:
+    print(lengh_of_the_list)
     albumaty_downloadable_driver.get(i)
     download_button = albumaty_downloadable_driver.find_element(By.CLASS_NAME,'singerblockxxx')
     download_button.click()
     time.sleep(8)
     final_download_button = albumaty_downloadable_driver.find_element(By.XPATH,'/html/body/div[4]/div/div/a')
     final_download_button.click()
+    lengh_of_the_list = lengh_of_the_list - 1
     time.sleep(5)
 albumaty_downloadable_driver.close()
 finish_time=time.time()
 total_seconds = int(finish_time - start_time)
-total_minutes = total_seconds/60
-print(f"It took {total_seconds} seconds to finish the runtime\n or {total_minutes} minutes")
+total_minutes = int(total_seconds/60)
+print(f"It took {total_seconds} seconds to finish the runtime\nOr around {total_minutes} minutes")
 
 
 
